@@ -78,12 +78,11 @@
           const cells = row.split("|").slice(1, -1);
           let filteredOut = false;
           Object.keys(filters).forEach(function(filter) {
-            const value = cells[filters[filter]].trim();
-            if (
-              document.getElementById(filter).checked &&
-              (!value || value === "no" || value === "not mentioned")
-            ) {
-              filteredOut = true;
+            if (document.getElementById(filter).checked) {
+              const value = cells[filters[filter]].trim();
+              if (!value || value === "no" || value === "not mentioned") {
+                filteredOut = true;
+              }
             }
           });
           if (!filteredOut) {
