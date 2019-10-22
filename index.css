@@ -7,11 +7,13 @@
 
 #table {
   display: flex;
+  width: 100vw;
+  overflow: hidden;
 }
 
 #nameColumn {
-  z-index: 900;
   width: 100vw;
+  overflow: hidden;
 }
 
 #scrollableColumns {
