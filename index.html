@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- Lightweight client-side loader that feature-detects and load polyfills only when necessary -->
+    <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2/webcomponents-loader.min.js"></script>
+    <!-- Load the element definition -->
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@1/src/zero-md.min.js"
+    ></script>
+    <title>JavaScript State Management Libraries & Frameworks</title>
+  </head>
+  <body>
+    <div id="intro"></div>
+    <br />
+    <input type="checkbox" id="filterTypeScript" />Mentions TypeScript support
+    <input type="checkbox" id="filterPerformance" />Mentions performance
+    <input type="checkbox" id="filterExtensible" />Is extensible
+    <input type="checkbox" id="filterDevTools" />Has developer tools
+    <input type="checkbox" id="filterTimeTravel" />Has time travel
+    <br />
+    <br />
+    <div id="table"></div>
+    <br />
+    <div id="end"></div>
+    <script>
+      const oReq = new XMLHttpRequest();
+      oReq.addEventListener("load", reqListener);
+      oReq.open(
+        "GET",
+        "https://raw.githubusercontent.com/prodo-dev/state-management/master/README.md"
+      );
+      oReq.send();
+
+      const mdStart = "<zero-md><template><xmp>";
+      const mdEnd = "</xmp></template></zero-md>";
+      let table = "";
+      function updateTable() {
+        const filteredTable = filterTable(table);
+        document.getElementById("table").innerHTML =
+          mdStart + filteredTable + mdEnd;
+      }
+
+      // Name | Link | Stars | TS | Perf | API | Concepts | Extensible | Devtools | Time travel
+      const filters = {
+        filterTypeScript: 3,
+        filterPerformance: 4,
+        filterExtensible: 7,
+        filterDevTools: 8,
+        filterTimeTravel: 9
+      };
+      Object.keys(filters).forEach(function(filter) {
+        document.getElementById(filter).addEventListener("change", () => {
+          updateTable();
+        });
+      });
+
+      function filterTable(table) {
+        const tableRows = table
+          .split(/\r\n|\n/)
+          .filter(row => row.includes("|"));
+        let result = "";
+        tableRows.forEach(row => {
+          const cells = row.split("|").slice(1, -1);
+          let filteredOut = false;
+          Object.keys(filters).forEach(function(filter) {
+            const value = cells[filters[filter]].trim();
+            if (
+              document.getElementById(filter).checked &&
+              (!value || value === "no" || value === "not mentioned")
+            ) {
+              filteredOut = true;
+            }
+          });
+          if (!filteredOut) {
+            result += row + "\n";
+          }
+        });
+        return result;
+      }
+
+      function reqListener() {
+        const startText = "## Comparison Table";
+        const endText = "Some other state-related libraries";
+        const tableStart =
+          this.responseText.indexOf(startText) + startText.length;
+        const tableEnd = this.responseText.indexOf(endText);
+
+        const intro = this.responseText.substring(0, tableStart);
+        document.getElementById("intro").innerHTML = mdStart + intro + mdEnd;
+
+        const end = this.responseText.substring(tableEnd);
+        document.getElementById("end").innerHTML = mdStart + end + mdEnd;
+
+        table = this.responseText.substring(tableStart, tableEnd);
+        updateTable();
+      }
+    </script>
+  </body>
+</html>

@@ -1,4 +1,4 @@
-# State Management Libraries & Frameworks
+# ~50 State Management Libraries & Frameworks
 
 You can manage your state with React [local state (setState)](https://reactjs.org/docs/state-and-lifecycle.html#adding-local-state-to-a-class), [hooks](https://reactjs.org/docs/hooks-intro.html) and [context](https://reactjs.org/docs/context.html), but often that's not ideal for complex applications. So far the most common choice for state management there has been Redux, but there are many other alternatives. Inspired by various posts about the state of state management in JavaScript, we decided to compile a thorough list of options and compare them in the categories we care about.
 
@@ -22,6 +22,8 @@ To see how Prodo compares, see our [README](https://github.com/prodo-dev/prodo).
 There's a lot of information to keep track of here, so it's entirely possible we got something wrong, or it went out of date. If you spot a mistake, or want to add a new entry to the table, please make a PR! We welcome comments and suggestions.
 
 ## Comparison Table
+
+Compiled in October 2019.
 
 |                                                             | Link                                                                                  | GitHub Stars | TypeScript support                                                                                                                                                        | Performance                                                                                                                                                                                                                    | API Complexity                                                                                           | Abstract concepts                                                                         | Extensibility            | Devtools                                                              | Time travel |
 | ----------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ------------------------ | --------------------------------------------------------------------- | ----------- |
