@@ -11,9 +11,13 @@
       type="module"
       src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@1/src/zero-md.min.js"
     ></script>
+    <link rel="stylesheet" type="text/css" href="index.css" />
     <title>JavaScript State Management Libraries & Frameworks</title>
   </head>
   <body>
+    <a href="https://github.com/prodo-dev/state-management" id="githubLink"
+      ><img src="GitHub-Mark-64px.png" width="40px"
+    /></a>
     <div id="intro"></div>
     <br />
     <input type="checkbox" id="filterTypeScript" />Mentions TypeScript support
@@ -23,9 +27,13 @@
     <input type="checkbox" id="filterTimeTravel" />Has time travel
     <br />
     <br />
-    <div id="table"></div>
+    <div id="table">
+      <div id="nameColumn"></div>
+      <div id="scrollableColumns"></div>
+    </div>
     <br />
     <div id="end"></div>
+
     <script>
       const oReq = new XMLHttpRequest();
       oReq.addEventListener("load", reqListener);
@@ -35,13 +43,15 @@
       );
       oReq.send();
 
-      const mdStart = "<zero-md><template><xmp>";
+      const mdStart = "<zero-md><template></style><xmp>";
       const mdEnd = "</xmp></template></zero-md>";
       let table = "";
       function updateTable() {
         const filteredTable = filterTable(table);
-        document.getElementById("table").innerHTML =
-          mdStart + filteredTable + mdEnd;
+        document.getElementById("nameColumn").innerHTML =
+          mdStart + filteredTable.nameColumn + mdEnd;
+        document.getElementById("scrollableColumns").innerHTML =
+          mdStart + filteredTable.scrollableColumns + mdEnd;
       }
 
       // Name | Link | Stars | TS | Perf | API | Concepts | Extensible | Devtools | Time travel
@@ -62,7 +72,8 @@
         const tableRows = table
           .split(/\r\n|\n/)
           .filter(row => row.includes("|"));
-        let result = "";
+        let nameColumn = "";
+        let scrollableColumns = "";
         tableRows.forEach(row => {
           const cells = row.split("|").slice(1, -1);
           let filteredOut = false;
@@ -76,10 +87,11 @@
             }
           });
           if (!filteredOut) {
-            result += row + "\n";
+            nameColumn += row + "\n"; // "|" + cells[0] + "\n";
+            scrollableColumns += cells.slice(1).join("|") + "\n";
           }
         });
-        return result;
+        return { nameColumn, scrollableColumns };
       }
 
       function reqListener() {

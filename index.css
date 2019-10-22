@@ -1,0 +1,22 @@
+#githubLink {
+  position: absolute;
+  right: 1rem;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+#table {
+  display: flex;
+}
+
+#nameColumn {
+  z-index: 900;
+  overflow: hidden;
+}
+
+#scrollableColumns {
+  position: absolute;
+  left: 140px;
+  width: calc(100vw - 140px);
+  z-index: 1000;
+}
