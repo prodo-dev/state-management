@@ -11,7 +11,7 @@
 
 #nameColumn {
   z-index: 900;
-  width: calc(100vw);
+  width: 100vw;
 }
 
 #scrollableColumns {
