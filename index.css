@@ -1,4 +1,4 @@
-.body {
+body {
   padding: 1rem;
 }
 
@@ -14,13 +14,15 @@
 }
 
 #nameColumn {
-  width: calc(100vw - 140px - 2rem);
+  min-width: calc(100vw - 140px - 2rem);
+  max-width: calc(100vw - 140px - 2rem);
   overflow: hidden;
 }
 
 #scrollableColumns {
   position: absolute;
   left: 140px;
-  width: calc(100vw - 140px - 2rem);
+  min-width: calc(100vw - 140px - 2rem);
+  max-width: calc(100vw - 140px - 2rem);
   z-index: 1000;
 }

@@ -22,6 +22,7 @@
     <br />
     <input type="checkbox" id="filterTypeScript" />Mentions TypeScript support
     <input type="checkbox" id="filterPerformance" />Mentions performance
+    <input type="checkbox" id="filterApi" />Simple (or medium) API
     <input type="checkbox" id="filterExtensible" />Is extensible
     <input type="checkbox" id="filterDevTools" />Has developer tools
     <input type="checkbox" id="filterTimeTravel" />Has time travel
@@ -58,6 +59,7 @@
       const filters = {
         filterTypeScript: 3,
         filterPerformance: 4,
+        filterApi: 5,
         filterExtensible: 7,
         filterDevTools: 8,
         filterTimeTravel: 9
@@ -74,13 +76,23 @@
           .filter(row => row.includes("|"));
         let nameColumn = "";
         let scrollableColumns = "";
-        tableRows.forEach(row => {
+        tableRows.forEach((row, idx) => {
           const cells = row.split("|").slice(1, -1);
           let filteredOut = false;
           Object.keys(filters).forEach(function(filter) {
             if (document.getElementById(filter).checked) {
               const value = cells[filters[filter]].trim();
-              if (!value || value === "no" || value === "not mentioned") {
+              if (
+                filter == "filterApi" &&
+                idx > 0 &&
+                value.toLowerCase().includes("complex")
+              ) {
+                filteredOut = true;
+              } else if (
+                !value ||
+                value === "no" ||
+                value === "not mentioned"
+              ) {
                 filteredOut = true;
               }
             }
