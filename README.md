@@ -12,7 +12,7 @@ Explanation of columns:
 - **Extensibility** - how easy is it to customize and extend the framework with either middleware, plugins or otherwise?
 - **Devtools** - does the framework come with its own developer tools, loggers, or integrate with existing (usually Redux) developer tools?
 - **Time travel** - do the devtools offer time travel functionality? If you're not familiar with this, you can check the Redux example [here](https://medium.com/the-web-tub/time-travel-in-react-redux-apps-using-the-redux-devtools-5e94eba5e7c0)).
-- **Automation**
+- **Automation** - TBD
 
 This table is roughly ordered by number of GitHub stars, but we’ve also grouped some related libraries together, for example different MobX variations.
 If any field is enclosed in "double quotes", it's a quote taken directly from their README or docs.
