@@ -21,8 +21,8 @@ body {
 
 #scrollableColumns {
   position: absolute;
-  left: 150px;
-  min-width: calc(100vw - 150px - 2rem);
-  max-width: calc(100vw - 150px - 2rem);
+  left: 195px;
+  min-width: calc(100vw - 195px - 2rem);
+  max-width: calc(100vw - 195px - 2rem);
   z-index: 1000;
 }

@@ -102,7 +102,11 @@
             scrollableColumns += cells.slice(1).join("|") + "\n";
           }
         });
-        return { nameColumn, scrollableColumns };
+        return {
+          nameColumn,
+          scrollableColumns:
+            nameColumn.split("\n").length > 3 ? scrollableColumns : ""
+        };
       }
 
       function reqListener() {
