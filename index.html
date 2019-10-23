@@ -26,6 +26,7 @@
     <input type="checkbox" id="filterExtensible" />Is extensible
     <input type="checkbox" id="filterDevTools" />Has developer tools
     <input type="checkbox" id="filterTimeTravel" />Has time travel
+    <input type="checkbox" id="filterAutomation" />Has automation
     <br />
     <br />
     <div id="table">
@@ -55,14 +56,15 @@
           mdStart + filteredTable.scrollableColumns + mdEnd;
       }
 
-      // Name | Link | Stars | TS | Perf | API | Concepts | Extensible | Devtools | Time travel
+      // Name | Link | Stars | TS | Perf | API | Concepts | Extensible | Devtools | Time travel | Automation
       const filters = {
         filterTypeScript: 3,
         filterPerformance: 4,
         filterApi: 5,
         filterExtensible: 7,
         filterDevTools: 8,
-        filterTimeTravel: 9
+        filterTimeTravel: 9,
+        filterAutomation: 10
       };
       Object.keys(filters).forEach(function(filter) {
         document.getElementById(filter).addEventListener("change", () => {
