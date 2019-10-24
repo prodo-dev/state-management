@@ -121,10 +121,17 @@
                 }
               }
             });
+            // TODO maybe use regex instead to wrap any links in all fields
             if (!filteredOut) {
               result +=
                 "<tr><td class='nameCol'>" +
-                cells.join("</td><td>") +
+                cells.slice(0, 2).join("</td><td>") +
+                "</td><td><a href='" +
+                cells[2] +
+                "'>" +
+                cells[2] +
+                "</a></td><td>" +
+                cells.slice(3).join("</td><td>") +
                 "</td></tr>";
             }
           }
