@@ -17,12 +17,6 @@ body {
   position: relative;
 }
 
-thead {
-  position: sticky;
-  top: 0;
-  background-color: pink;
-}
-
 .nameCol {
   position: sticky;
   left: 0;
@@ -31,7 +25,6 @@ thead {
 td.nameCol {
   background-color: peachpuff;
 }
-
 th.nameCol {
   background-color: white;
 }
@@ -42,4 +35,7 @@ td {
 
 th {
   padding: 1rem;
+  position: sticky;
+  top: 0;
+  background-color: pink;
 }
