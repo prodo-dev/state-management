@@ -56,15 +56,15 @@
           mdStart + filteredTable.scrollableColumns + mdEnd;
       }
 
-      // Name | Link | Stars | TS | Perf | API | Concepts | Extensible | Devtools | Time travel | Automation
+      // Name | Notes | Link | Stars | TS | Perf | API | Concepts | Extensible | Devtools | Time travel | Automation
       const filters = {
-        filterTypeScript: 3,
-        filterPerformance: 4,
-        filterApi: 5,
-        filterExtensible: 7,
-        filterDevTools: 8,
-        filterTimeTravel: 9,
-        filterAutomation: 10
+        filterTypeScript: 4,
+        filterPerformance: 5,
+        filterApi: 6,
+        filterExtensible: 8,
+        filterDevTools: 9,
+        filterTimeTravel: 10,
+        filterAutomation: 11
       };
       Object.keys(filters).forEach(function(filter) {
         document.getElementById(filter).addEventListener("change", () => {
