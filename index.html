@@ -50,10 +50,7 @@
     </label>
     <br />
     <br />
-    <div id="table">
-      <div id="nameColumn"></div>
-      <div id="scrollableColumns"></div>
-    </div>
+    <div id="table"></div>
     <br />
     <div id="end"></div>
 
@@ -71,10 +68,8 @@
       let table = "";
       function updateTable() {
         const filteredTable = filterTable(table);
-        document.getElementById("nameColumn").innerHTML =
-          mdStart + filteredTable.nameColumn + mdEnd;
-        document.getElementById("scrollableColumns").innerHTML =
-          mdStart + filteredTable.scrollableColumns + mdEnd;
+        document.getElementById("table").innerHTML =
+          "<table>" + filteredTable + "</table>";
       }
 
       // Name | Notes | Link | Stars | TS | Perf | API | Concepts | Extensible | Devtools | Time travel | Automation
@@ -97,39 +92,44 @@
         const tableRows = table
           .split(/\r\n|\n/)
           .filter(row => row.includes("|"));
-        let nameColumn = "";
-        let scrollableColumns = "";
+        let result =
+          "<thead><th class='nameCol'>" +
+          tableRows[0]
+            .slice(1, -1)
+            .split("|")
+            .join("</th><th>") +
+          "</th></thead><tbody>";
         tableRows.forEach((row, idx) => {
-          const cells = row.split("|").slice(1, -1);
-          let filteredOut = false;
-          Object.keys(filters).forEach(function(filter) {
-            if (document.getElementById(filter).checked) {
-              const value = cells[filters[filter]].trim();
-              if (
-                filter == "filterApi" &&
-                idx > 0 &&
-                value.toLowerCase().includes("complex")
-              ) {
-                filteredOut = true;
-              } else if (
-                !value ||
-                value === "no" ||
-                value === "not mentioned"
-              ) {
-                filteredOut = true;
+          if (idx > 1) {
+            const cells = row.split("|").slice(1, -1);
+            let filteredOut = false;
+            Object.keys(filters).forEach(function(filter) {
+              if (document.getElementById(filter).checked) {
+                const value = cells[filters[filter]].trim();
+                if (
+                  filter == "filterApi" &&
+                  idx > 0 &&
+                  value.toLowerCase().includes("complex")
+                ) {
+                  filteredOut = true;
+                } else if (
+                  !value ||
+                  value === "no" ||
+                  value === "not mentioned"
+                ) {
+                  filteredOut = true;
+                }
               }
+            });
+            if (!filteredOut) {
+              result +=
+                "<tr><td class='nameCol'>" +
+                cells.join("</td><td>") +
+                "</td></tr>";
             }
-          });
-          if (!filteredOut) {
-            nameColumn += row + "\n";
-            scrollableColumns += cells.slice(1).join("|") + "\n";
           }
         });
-        return {
-          nameColumn,
-          scrollableColumns:
-            nameColumn.split("\n").length > 3 ? scrollableColumns : ""
-        };
+        return result + "</tbody>";
       }
 
       function reqListener() {

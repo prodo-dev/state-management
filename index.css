@@ -1,4 +1,5 @@
 body {
+  margin: 0;
   padding: 1rem;
 }
 
@@ -10,19 +11,28 @@ body {
 }
 
 #table {
-  display: flex;
+  position: relative;
 }
 
-#nameColumn {
-  min-width: calc(100vw - 100px - 2rem);
-  max-width: calc(100vw - 100px - 2rem);
-  overflow: hidden;
+thead {
+  position: sticky;
+  top: 0;
+  background-color: pink;
 }
 
-#scrollableColumns {
-  position: absolute;
-  left: 195px;
-  min-width: calc(100vw - 195px - 2rem);
-  max-width: calc(100vw - 195px - 2rem);
-  z-index: 1000;
+.nameCol {
+  position: sticky;
+  left: 0;
+}
+
+td.nameCol {
+  background-color: peachpuff;
+}
+
+th.nameCol {
+  background-color: white;
+}
+
+td {
+  padding: 1rem;
 }
